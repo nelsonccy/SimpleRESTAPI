@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.bankapp.dao.AccountRepository;
@@ -14,13 +15,27 @@ import com.bankapp.dao.TransactionRepository;
 import com.bankapp.model.Account;
 import com.bankapp.model.Transaction;
 
-@Repository
+@Component
 public class BankingAppImpl {
 	
 	@Autowired
 	private AccountRepository accountDAO;
 	@Autowired
 	private TransactionRepository transactionDAO;
+	
+	
+	public void create(String name , BigDecimal balance) {
+		
+		Account account = new Account();
+		account.setName(name);
+		account.setBalance(balance);
+		accountDAO.save(account);
+		
+	}
+	
+	public List<Account> listAccount() {
+		return accountDAO.findAll();
+	}
 	
 	public Account enquireCustomer(Long id) {
 		
@@ -44,8 +59,11 @@ public class BankingAppImpl {
 		///add exception case checking
 		
 		
-		Account sender = this.accountDAO.findById(senderId).get();
-		Account receiver = this.accountDAO.findById(receiverId).get();
+		Account sender = enquireCustomer(senderId);
+		Account receiver = enquireCustomer(receiverId);
+		if(sender==null || receiver==null) {
+			return false;
+		}
 		BigDecimal senderOrgBalance = sender.getBalance();
 		BigDecimal receiverOrgBalance = receiver.getBalance();
 		

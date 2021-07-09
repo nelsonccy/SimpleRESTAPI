@@ -5,14 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bankapp.json.EnquireCustomerRequest;
-import com.bankapp.json.EnquireCustomerResponse;
+import com.bankapp.json.EnquireAccountRequest;
+import com.bankapp.json.EnquireAccountResponse;
 import com.bankapp.json.SendMoneyRequest;
 import com.bankapp.json.SendMoneyResponse;
 import com.bankapp.model.Account;
@@ -24,27 +23,21 @@ public class BankingAppController {
 	
 	@Autowired
 	private BankingAppImpl bankingAppImpl; 
-	
-	@GetMapping("/enquireGet/{id}")
-	@ResponseBody
-	public EnquireCustomerResponse enquireCustomerDetails(@PathVariable long id){
 		
-		Account cus=bankingAppImpl.enquireCustomer(id);
-		
-		List<Transaction> transactions = bankingAppImpl.getListofTransaction(id);
-		return new EnquireCustomerResponse(cus,transactions);
-		
-	}
-	
 	@GetMapping("/enquire")
 	@ResponseBody
-	public EnquireCustomerResponse enquireCustomerDetails(@RequestBody EnquireCustomerRequest request){
+	public EnquireAccountResponse enquireCustomerDetails(@RequestBody EnquireAccountRequest request){
 		
-		Long id = request.getCustomerId();
+		Long id = request.getAccountId();
 		
 		Account cus=bankingAppImpl.enquireCustomer(id);
 		List<Transaction> transactions = bankingAppImpl.getListofTransaction(id);
-		return new EnquireCustomerResponse(cus,transactions);
+		
+		String responseCode = "999";
+		if(cus!=null) {
+			responseCode = "000";
+		}
+		return new EnquireAccountResponse(cus,transactions,responseCode);
 		
 	}
 	
@@ -63,8 +56,8 @@ public class BankingAppController {
 		 response.setReceiverId(receiverId);
 		 response.setAmount(amount);
 		 if(bankingAppImpl.sendMoney(senderId, receiverId, amount))
-			 response.setResponseCode("0000");
-		 else response.setResponseCode("9999");
+			 response.setResponseCode("000");
+		 else response.setResponseCode("999");
 		 
 		 return response;
 	}
