@@ -32,7 +32,7 @@ Sample Response:
  
  ##########################################################################
  To start up the server, execute ./mvnw spring-boot:run
- To run the test, execute ./mvnw test
+ To run the test, execute ./mvnw clean test
  
  
  
