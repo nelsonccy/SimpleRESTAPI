@@ -12,13 +12,11 @@
  localhost:8080/enquire
  
  Sample request:
-       HTTP Method = GET
           Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"15"]
              Body = {"accountId":1}
 
 Sample Response:
         Headers = [Content-Type:"application/json"]
-     Content type = application/json
              Body = {"account":{"id":1,"name":"Nelson Chan","balance":123.00},"transactions":[],"responseCode":"000"}
 
  
