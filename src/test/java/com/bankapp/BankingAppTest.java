@@ -52,16 +52,14 @@ public class BankingAppTest {
 		          .content(json.toString())).andDo(print()).andExpect(status().isOk())
 		.andExpect(jsonPath("$.responseCode").value("000"))
 		.andExpect(jsonPath("$.account.id").value("1"))
-		.andExpect(jsonPath("$.account.balance").value(new BigDecimal("123.0")))
-		.andExpect(jsonPath("$.transactions").isEmpty());
+		.andExpect(jsonPath("$.account.balance").value(new BigDecimal("123.0")));
 		
 		
 		this.mockMvc.perform(get("/enquire").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
 		          .content(json2.toString())).andDo(print()).andExpect(status().isOk())
 		.andExpect(jsonPath("$.responseCode").value("000"))
 		.andExpect(jsonPath("$.account.id").value("2"))
-		.andExpect(jsonPath("$.account.balance").value(new BigDecimal("3000.0")))
-		.andExpect(jsonPath("$.transactions").isEmpty());
+		.andExpect(jsonPath("$.account.balance").value(new BigDecimal("3000.0")));
 	
 		
 		//do send money
