@@ -61,6 +61,14 @@ public class BankingAppController {
 		
 	}
 	
+	@GetMapping("/getAll")
+	@ResponseBody
+	public List<Account> getAllAccount(){
+		
+		return bankingAppImpl.listAccount();
+		
+	}
+	
 	@GetMapping("/get")
 	@ResponseBody
 	public EnquireAccountResponse getCustomerDetails2(@RequestParam Long id){
