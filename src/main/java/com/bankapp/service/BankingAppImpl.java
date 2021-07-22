@@ -8,8 +8,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-
 import com.bankapp.dao.AccountRepository;
 import com.bankapp.dao.TransactionRepository;
 import com.bankapp.model.Account;
@@ -19,9 +17,9 @@ import com.bankapp.model.Transaction;
 public class BankingAppImpl {
 	
 	@Autowired
-	private AccountRepository accountDAO;
+	private AccountRepository accountRepository;
 	@Autowired
-	private TransactionRepository transactionDAO;
+	private TransactionRepository transactionRepository;
 	
 	
 	public Account create(String name , BigDecimal balance) {
@@ -29,18 +27,18 @@ public class BankingAppImpl {
 		Account account = new Account();
 		account.setName(name);
 		account.setBalance(balance);
-		accountDAO.save(account);
+		accountRepository.save(account);
 		return account;
 		
 	}
 	
 	public List<Account> listAccount() {
-		return accountDAO.findAll();
+		return accountRepository.findAll();
 	}
 	
 	public Account enquireCustomer(Long id) {
 		
-		Optional<Account> account = accountDAO.findById(id);
+		Optional<Account> account = accountRepository.findById(id);
 		if(account.isPresent()) {
 			return account.get();
 		}
@@ -53,10 +51,10 @@ public class BankingAppImpl {
 	public List<Transaction> getListofTransaction(Long customerId){
 	
 		
-		return transactionDAO.listAllTransaction(customerId);
+		return transactionRepository.listAllTransaction(customerId);
 	}
 		
-	public boolean sendMoney(Long senderId , Long receiverId, BigDecimal amount) {
+	public synchronized boolean sendMoney(Long senderId , Long receiverId, BigDecimal amount) {
 		///add exception case checking
 		
 		
@@ -93,12 +91,12 @@ public class BankingAppImpl {
 		Date currentDate = new Date();
 		transaction.setCreatedTimeStamp(new Timestamp(currentDate.getTime()));
 		
-		this.transactionDAO.save(transaction);
-		this.transactionDAO.flush();
+		this.transactionRepository.save(transaction);
+		this.transactionRepository.flush();
 		
-		this.accountDAO.save(sender);
-		this.accountDAO.save(receiver);
-		this.accountDAO.flush();
+		this.accountRepository.save(sender);
+		this.accountRepository.save(receiver);
+		this.accountRepository.flush();
 		
 		return true;
 		
