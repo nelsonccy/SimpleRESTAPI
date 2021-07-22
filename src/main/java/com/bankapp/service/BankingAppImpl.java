@@ -24,12 +24,13 @@ public class BankingAppImpl {
 	private TransactionRepository transactionDAO;
 	
 	
-	public void create(String name , BigDecimal balance) {
+	public Account create(String name , BigDecimal balance) {
 		
 		Account account = new Account();
 		account.setName(name);
 		account.setBalance(balance);
 		accountDAO.save(account);
+		return account;
 		
 	}
 	

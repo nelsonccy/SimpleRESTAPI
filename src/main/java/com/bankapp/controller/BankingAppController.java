@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +26,58 @@ public class BankingAppController {
 	@Autowired
 	private BankingAppImpl bankingAppImpl; 
 		
+	
+	
+	
+	@GetMapping("hello")
+	@ResponseBody String hello() {
+		return "Hello World!!!!!!!!!!!";
+		
+	}
+	
+	//add a create cus
+	@PostMapping("/create")
+	@ResponseBody
+	public Account create(@RequestParam String name , BigDecimal balance) {
+		
+		return bankingAppImpl.create(name, balance);
+		
+	}
+	
+	@GetMapping("/enquire/{id}")
+	@ResponseBody
+	public EnquireAccountResponse getCustomerDetails(@PathVariable Long id){
+		
+		
+		
+		Account cus=bankingAppImpl.enquireCustomer(id);
+		List<Transaction> transactions = bankingAppImpl.getListofTransaction(id);
+		
+		String responseCode = "999";
+		if(cus!=null) {
+			responseCode = "000";
+		}
+		return new EnquireAccountResponse(cus,transactions,responseCode);
+		
+	}
+	
+	@GetMapping("/get")
+	@ResponseBody
+	public EnquireAccountResponse getCustomerDetails2(@RequestParam Long id){
+		
+		
+		
+		Account cus=bankingAppImpl.enquireCustomer(id);
+		List<Transaction> transactions = bankingAppImpl.getListofTransaction(id);
+		
+		String responseCode = "999";
+		if(cus!=null) {
+			responseCode = "000";
+		}
+		return new EnquireAccountResponse(cus,transactions,responseCode);
+		
+	}
+	
 	@GetMapping("/enquire")
 	@ResponseBody
 	public EnquireAccountResponse enquireCustomerDetails(@RequestBody EnquireAccountRequest request){
