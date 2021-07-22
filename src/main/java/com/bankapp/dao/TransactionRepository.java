@@ -14,7 +14,7 @@ import com.bankapp.model.Transaction;
 public interface TransactionRepository extends JpaRepository<Transaction,Long> {
 
 
-	@Query(value = "SELECT * FROM Transaction t WHERE t.sender_id = :id or t.receiver_id =:id order by created_time_stamp; " , nativeQuery=true )
+	@Query(value = "SELECT * FROM transaction t WHERE t.sender_id = :id or t.receiver_id =:id order by created_time_stamp; " , nativeQuery=true )
 	List<Transaction> listAllTransaction(@Param("id")Long id);
 	
 }

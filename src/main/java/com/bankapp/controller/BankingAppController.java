@@ -36,7 +36,7 @@ public class BankingAppController {
 	}
 	
 	//add a create cus
-	@PostMapping("/create")
+	@GetMapping("/create")
 	@ResponseBody
 	public Account create(@RequestParam String name , BigDecimal balance) {
 		

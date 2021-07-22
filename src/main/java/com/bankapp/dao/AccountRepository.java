@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.bankapp.model.Account;
 
-//@RepositoryRestResource(collectionResourceRel = "account", path = "account")
-@Repository
+@RepositoryRestResource(collectionResourceRel = "account", path = "account")
+//@Repository
 public interface AccountRepository extends JpaRepository<Account,Long>{
 
 
