@@ -11,7 +11,7 @@ http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/
  This API contains two endpoint: /enquire(GET) and /sendMoney(POST):
  
  1)Enquire:
- localhost:8080/enquire
+ http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/enquire
  
  Sample request:
           Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"15"]
@@ -23,7 +23,7 @@ Sample Response:
 
  
  2)SendMoney:
- localhost:8080/sendMoney
+ http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/sendMoney
  
  Sample Request:
           Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"44"]
