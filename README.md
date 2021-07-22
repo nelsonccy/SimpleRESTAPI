@@ -1,4 +1,7 @@
 # bankingAPP
+
+
+http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/
  
  ##########################################################################
  To start up the server, execute ./mvnw spring-boot:run
