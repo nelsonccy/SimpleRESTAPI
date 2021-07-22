@@ -1,5 +1,4 @@
 # bankingAPP
- Monese test
  
  ##########################################################################
  To start up the server, execute ./mvnw spring-boot:run
