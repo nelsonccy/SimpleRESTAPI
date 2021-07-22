@@ -65,8 +65,9 @@ public class BankingAppImpl {
 		if(sender==null || receiver==null) {
 			return false;
 		}
-		BigDecimal senderOrgBalance = sender.getBalance();
-		BigDecimal receiverOrgBalance = receiver.getBalance();
+		BigDecimal senderOrgBalance = sender.getBalance()==null?new BigDecimal(0):sender.getBalance();
+		BigDecimal receiverOrgBalance = receiver.getBalance()==null?new BigDecimal(0):receiver.getBalance();;
+		
 		
 		BigDecimal senderAfterBalance = senderOrgBalance.subtract(amount);
 		BigDecimal receiverAfterBalance = receiverOrgBalance.add(amount);
