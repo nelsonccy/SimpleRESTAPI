@@ -37,7 +37,11 @@ public class BankingAppController {
 	@PostMapping("/create")
 	@ResponseBody
 	public Account create(@RequestParam String name ,@RequestParam BigDecimal balance) {
+<<<<<<< Updated upstream
 		
+=======
+		//add some comment 
+>>>>>>> Stashed changes
 		return bankingAppImpl.create(name, balance);
 		
 	}
