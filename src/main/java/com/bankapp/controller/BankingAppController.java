@@ -27,8 +27,6 @@ public class BankingAppController {
 	private BankingAppImpl bankingAppImpl; 
 		
 	
-	
-	
 	@GetMapping("hello")
 	@ResponseBody String hello() {
 		return "Hello World!!!!!!!!!!!";

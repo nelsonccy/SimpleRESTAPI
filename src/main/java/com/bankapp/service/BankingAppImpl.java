@@ -23,13 +23,18 @@ public class BankingAppImpl {
 	
 	
 	public Account create(String name , BigDecimal balance) {
+		try {
+			Account account = new Account();
+			account.setName(name);
+			account.setBalance(balance);
+			accountRepository.save(account);
+			return account;
+		}catch(Exception e) {
+			return null;
+			
+		}
 		
-		Account account = new Account();
-		account.setName(name);
-		account.setBalance(balance);
-		accountRepository.save(account);
-		return account;
-		
+				
 	}
 	
 	public List<Account> listAccount() {
