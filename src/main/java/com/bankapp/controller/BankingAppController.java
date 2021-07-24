@@ -29,14 +29,14 @@ public class BankingAppController {
 	
 	@GetMapping("hello")
 	@ResponseBody String hello() {
-		return "Hello World!!!!!!!!!!!";
+		return "Hello World!!!!!!!!!!! test";
 		
 	}
 	
 	//add a create cus
-	@GetMapping("/create")
+	@PostMapping("/create")
 	@ResponseBody
-	public Account create(@RequestParam String name , BigDecimal balance) {
+	public Account create(@RequestParam String name ,@RequestParam BigDecimal balance) {
 		
 		return bankingAppImpl.create(name, balance);
 		
