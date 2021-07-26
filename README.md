@@ -3,11 +3,7 @@
 
 http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/
  
- ##########################################################################
- To start up the server, execute ./mvnw spring-boot:run
- To run the test, execute ./mvnw clean test
-
- ##########################################################################
+Sample Endpoint
  This API contains two endpoint: /enquire(GET) and /sendMoney(POST):
  
  1)Enquire:
