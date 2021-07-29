@@ -1,4 +1,6 @@
 # SimpleRESTAPI
+This is a simple system which holds different accounts with balance.
+Transaction can be made between accounts.
 
 
 http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/
