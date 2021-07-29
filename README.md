@@ -48,7 +48,7 @@ Sample Response:
  
  5) getAll(GET)
   get All account details
-  http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/getALL
+  http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/getAll
  
  
  
