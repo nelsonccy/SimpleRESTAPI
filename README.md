@@ -1,4 +1,4 @@
-# bankingAPP
+# SimpleRESTAPI
 
 
 http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/
@@ -7,6 +7,9 @@ Sample Endpoint
  This API contains different endpoint
  
  1)Enquire(GET):
+ 
+ Enquire the account balance and list all related transactions
+ 
  http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/enquire
  or
  http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/enquire/{id}
@@ -20,7 +23,8 @@ Sample Response:
              Body = {"account":{"id":1,"name":"Nelson Chan","balance":123.00},"transactions":[],"responseCode":"000"}
 
  
- 2)SendMoney(POST):
+ 2)SendMoney(POST): Send money from one account to another
+ 
  http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/sendMoney
  
  Sample Request:
@@ -33,9 +37,11 @@ Sample Response:
  
  
  3) Create(POST)
+      http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/create
       name and balance as attribute.
       used by simple request client
       http://sendrequestclient.us-east-2.elasticbeanstalk.com/create.html
+      
  4) Get(GET)
   similiar to enquire but using url param
  http://spingboothelloword-env.eba-pnpiwrah.us-east-2.elasticbeanstalk.com/get?id=1
